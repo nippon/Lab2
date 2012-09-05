@@ -15,7 +15,7 @@ namespace Lab2.Controllers
 
         //
         // GET: /Account/LogOn
-
+        //Commit test
         public ActionResult LogOn()
         {
             return View();
