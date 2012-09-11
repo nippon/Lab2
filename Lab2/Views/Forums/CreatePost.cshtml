@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "CreatePost";
+    
+}
+
+           
+<h2>CreatePost</h2>
+
+@using (Html.BeginForm())
+    {
+    <form>
+        Title: <input type="text" name="title" required="required"/><br />
+        Body: <input type="text" name="body" required="required"/><br />
+        <input type="submit" value="Create post"/>
+    </form> 
+    }

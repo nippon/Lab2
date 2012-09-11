@@ -136,5 +136,23 @@ namespace Lab2.Models.Repositories
         {
             return All<Post>().Where(p => p.CreatedByID == userID).Take(take).ToList();
         }
+
+        //Hämta en lista med ForumThreads sortera på CreateDate
+        public List<ForumThread> GetSortedThreads()
+        {
+            return All<ForumThread>().OrderBy(p => p.CreateDate).ToList();
+        }
+
+        public List<Post> GetPostsByThreadID(Guid id)
+        {
+            return All<Post>().OrderBy(p => p.CreateDate).Where(p => p.ThreadID == id).ToList();
+        }
+        public string GetSiteAdmins() {
+            List<User> list = All<User>().Where(p => p.Type == User.UserType.Admin).ToList();
+            string result = "";
+            foreach( var item in list )
+                result += item.UserName + ", ";
+            return result;
+        }
     }
 }

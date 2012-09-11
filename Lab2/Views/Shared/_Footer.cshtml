@@ -1,0 +1,3 @@
+﻿@using Lab2.Models.Entities
+@using Lab2.Models.Repositories
+<div class="capclear2 aw"><p>If you experience any problems, please contact: @(string.Join( ", ", Repository.Instance.GetSiteAdmins() ))</p></div>

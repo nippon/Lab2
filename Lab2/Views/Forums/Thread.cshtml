@@ -1,0 +1,33 @@
+﻿@using Lab2.ViewModels
+@using Lab2.Models.Entities
+@using System.ComponentModel;
+@model ThreadViewModel
+@{
+    ViewBag.Title = "Thread";
+}
+
+<h2>Thread</h2>
+
+
+@Html.ActionLink("Create Post", "CreatePost","Forums", new { id = Model.ForumThread.ID }, null )
+
+<h3>@Html.LabelFor(f => f.ForumThread.Title) : @Html.DisplayFor(f => f.ForumThread.Title)</h3>
+<div class="capclear2 aw detailspanel">
+    
+
+@foreach (var item in Model.Post) 
+{
+    <ul>    
+        <li>
+            <span>@Html.LabelFor(p => item.Title):</span>@Html.DisplayFor(u => item.Title)
+        </li>
+        <li>
+            <span>@Html.LabelFor(p => item.CreateDate ):</span>@Html.DisplayFor(u => item.CreateDate)
+        </li>
+        <li>
+            <span>@Html.LabelFor(p => item.Body ):</span>@Html.DisplayFor(u => item.Body)
+        </li>
+    </ul>
+}
+    
+</div>

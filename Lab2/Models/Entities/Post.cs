@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Lab2.Models.Entities.Abstract;
 using Lab2.Models.Repositories;
+using System.ComponentModel;
 
 namespace Lab2.Models.Entities
 {
@@ -24,6 +25,7 @@ namespace Lab2.Models.Entities
         private User _CreatedBy { get; set; }
         public Guid CreatedByID { get; set; }
         public User CreatedBy { get { return _CreatedBy; } }
+        [DisplayName("Created")]
         public DateTime CreateDate { get; set; }
         public string Title { get; set; }
         public string TitleShort 
@@ -33,6 +35,7 @@ namespace Lab2.Models.Entities
                 return Title.Length > 20 ? Title.Substring(0, 17) + "..." : Title;
             } 
         }
+        [DisplayName("Message")]
         public string Body { get; set; }
         public string BodyShort {
             get
@@ -83,6 +86,14 @@ namespace Lab2.Models.Entities
             // I det här fallet kör vi på en ful-lösning dock :(
             // Skulle jag lösa detta i det här fallet så hade jag byggt en ExtensionMethod för det.
             _CreatedBy = Repository.Instance.All<User>().Where(u => u.ID == CreatedByID).FirstOrDefault();
+        }
+
+        public bool Validate()
+        {
+            if (!string.IsNullOrEmpty(Title) || !string.IsNullOrEmpty(Body))
+                return true;
+
+            return false;
         }
 
         public enum PostTags
